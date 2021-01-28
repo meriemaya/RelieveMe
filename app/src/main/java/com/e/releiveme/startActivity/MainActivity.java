@@ -2,20 +2,16 @@ package com.e.releiveme.startActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.wearable.activity.WearableActivity;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.wear.ambient.AmbientModeSupport;
 
+import com.e.releiveme.Models.SimpleFragmentPageAdapter;
 import com.e.releiveme.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 

@@ -1,11 +1,12 @@
-package com.e.releiveme.startActivity;
+package com.e.releiveme.Models;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.e.releiveme.Agenda;
-import com.e.releiveme.Fait;
+import com.e.releiveme.startActivity.Agenda;
+import com.e.releiveme.startActivity.Fait;
+import com.e.releiveme.startActivity.AFaire;
 
 public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
 

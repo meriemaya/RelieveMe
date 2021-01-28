@@ -1,4 +1,4 @@
-package com.e.releiveme;
+package com.e.releiveme.startActivity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.e.releiveme.R;
 
 /**
  * A simple {@link Fragment} subclass.
