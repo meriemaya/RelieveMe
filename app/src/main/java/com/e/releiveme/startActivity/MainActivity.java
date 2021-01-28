@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.wear.ambient.AmbientModeSupport;
+
 import com.e.releiveme.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -14,7 +19,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-public class MainActivity extends WearableActivity {
+public class MainActivity extends FragmentActivity implements AmbientModeSupport.AmbientCallbackProvider {
 
     private ImageView qrImageView;
 
@@ -23,12 +28,26 @@ public class MainActivity extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        qrImageView = (ImageView) findViewById(R.id.qr_view);
+        // Find the view pager that will
+        // allow the user to swipe
+        // between fragments
+        ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
+
+        // Create an adapter that
+        // knows which fragment should
+        // be shown on each page
+        SimpleFragmentPageAdapter adapter = new SimpleFragmentPageAdapter(getSupportFragmentManager());
+
+        // Set the adapter onto
+        // the view pager
+        viewPager.setAdapter(adapter);
+
+        //qrImageView = (ImageView) findViewById(R.id.qr_view);
         // generate QR Code
 
-        generateQrCode(qrImageView);
+        //generateQrCode(qrImageView);
         // Enables Always-on
-        setAmbientEnabled();
+        //setAmbientEnabled();
 
     }
     protected void generateQrCode(ImageView v){
@@ -45,4 +64,8 @@ public class MainActivity extends WearableActivity {
         }
     }
 
+    @Override
+    public AmbientModeSupport.AmbientCallback getAmbientCallback() {
+        return null;
+    }
 }

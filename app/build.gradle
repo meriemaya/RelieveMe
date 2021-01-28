@@ -32,5 +32,7 @@ dependencies {
     implementation 'androidx.wear:wear:1.0.0'
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 }
