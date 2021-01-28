@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.e.releiveme.R;
 
@@ -15,7 +17,10 @@ import com.e.releiveme.R;
  * Use the {@link Fait#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fait extends Fragment {
+public class Fait extends Fragment implements android.view.View.OnClickListener {
+
+    private Button button;
+    private View View;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,9 +63,20 @@ public class Fait extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fait, container, false);
+        View = inflater.inflate(R.layout.fragment_fait, container, false);
+
+        button = (Button) View.findViewById(R.id.button);
+        button.setOnClickListener(this);
+
+        return View;
+    }
+
+    @Override
+    public void onClick(android.view.View v) {
+        if(v == button) {
+            Toast.makeText(getContext(), "appui sur le bouton", Toast.LENGTH_SHORT).show();
+        }
     }
 }

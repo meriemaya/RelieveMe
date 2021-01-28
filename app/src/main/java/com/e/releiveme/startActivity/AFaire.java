@@ -21,6 +21,7 @@ import com.e.releiveme.R;
 public class AFaire extends Fragment implements View.OnClickListener {
 
     private Button button;
+    private View View;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +31,6 @@ public class AFaire extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private View View;
 
     public AFaire() {
         // Required empty public constructor
@@ -67,6 +67,7 @@ public class AFaire extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View = inflater.inflate(R.layout.fragment_a_faire, container, false);
+
         button = (Button) View.findViewById(R.id.button);
         button.setOnClickListener(this);
 
