@@ -1,9 +1,11 @@
-
 package com.e.releiveme.startActivity;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.e.releiveme.Models.Adapter;
 import com.e.releiveme.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AFaire#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AFaire extends Fragment implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class AFaire extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
 
     private Button button;
-    private View View;
+    private View view;
+    public Adapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,12 +67,29 @@ public class AFaire extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View = inflater.inflate(R.layout.fragment_a_faire, container, false);
+        view = inflater.inflate(R.layout.fragment_a_faire, container, false);
 
-        button = (Button) View.findViewById(R.id.button);
-        button.setOnClickListener(this);
+        //button = (Button) view.findViewById(R.id.button);
+        //button.setOnClickListener(this);
 
-        return View;
+        ArrayList<String> animalNames = new ArrayList<>();
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.a_faire_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new Adapter(getContext(), animalNames);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),1);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        return view;
     }
 
     @Override
@@ -79,5 +97,10 @@ public class AFaire extends Fragment implements View.OnClickListener {
         if(v == button) {
             Toast.makeText(getContext(), "appui sur le bouton", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 }
