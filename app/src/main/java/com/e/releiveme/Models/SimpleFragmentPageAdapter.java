@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.e.releiveme.homeActivity.Agenda;
 import com.e.releiveme.homeActivity.Fait;
 import com.e.releiveme.homeActivity.AFaire;
+import com.e.releiveme.homeActivity.Sante;
 
 public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
 
@@ -24,15 +25,18 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
         else if (position == 1) {
             return new Fait();
         }
-        else {
+        else if (position == 2) {
             return new Agenda();
+        }
+        else {
+            return new Sante();
         }
     }
 
     @Override
     public int getCount()
     {
-        return 3;
+        return 4;
     }
 }
 
