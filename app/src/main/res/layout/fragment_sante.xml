@@ -35,6 +35,14 @@
             android:text="Santé"
             android:textColor="#FFFFFF" />
 
+        <TextView
+            android:id="@+id/heartbeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
 </FrameLayout>

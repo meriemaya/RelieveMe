@@ -1,9 +1,13 @@
 package com.e.releiveme.homeActivity;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +18,13 @@ import android.widget.TextView;
 import com.e.releiveme.R;
 
 
-public class Sante extends Fragment implements View.OnClickListener {
+public class Sante extends Fragment implements View.OnClickListener, SensorEventListener {
 
     private Button button;
-    private TextView sante;
+    private TextView sante, heartbeat;
     private View view;
+    private SensorManager mSensorManager;
+    private Sensor mHeartRateSensor;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,6 +66,10 @@ public class Sante extends Fragment implements View.OnClickListener {
         button = (Button) view.findViewById(R.id.buttonSante);
         button.setOnClickListener(this);
         sante = (TextView) view.findViewById(R.id.sante);
+        heartbeat = (TextView) view.findViewById(R.id.heartbeat);
+
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
 
         return view;
     }
@@ -69,5 +79,18 @@ public class Sante extends Fragment implements View.OnClickListener {
         if(v == button) {
 
         }
+    }
+
+    public void onSensorChanged(SensorEvent event) {
+        float mHeartRateFloat = event.values[0];
+
+        int mHeartRate = Math.round(mHeartRateFloat);
+
+        heartbeat.setText(Integer.toString(mHeartRate));
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
