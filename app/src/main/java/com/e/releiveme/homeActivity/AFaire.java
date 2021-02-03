@@ -11,18 +11,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.e.releiveme.Models.Adapter;
+import com.e.releiveme.Models.AdapterAFaire;
 import com.e.releiveme.R;
 
 import java.util.ArrayList;
 
-public class AFaire extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
+public class AFaire extends Fragment implements View.OnClickListener, AdapterAFaire.ItemClickListener {
 
-    private Button button;
+    private Button button, retour;
+    private TextView afaire;
+    private RecyclerView afairerecyclerView;
     private View view;
-    public Adapter adapter;
+    public AdapterAFaire adapter;
+    private ArrayList<String> toDoList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,20 +73,26 @@ public class AFaire extends Fragment implements View.OnClickListener, Adapter.It
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_a_faire, container, false);
 
-        //button = (Button) view.findViewById(R.id.button);
-        //button.setOnClickListener(this);
+        button = (Button) view.findViewById(R.id.buttonAFaire);
+        button.setOnClickListener(this);
+        retour = (Button) view.findViewById(R.id.returnAFaire);
+        retour.setOnClickListener(this);
+        retour.setVisibility(View.GONE);
+        afaire = (TextView) view.findViewById(R.id.afaire);
+        afairerecyclerView = (RecyclerView) view.findViewById(R.id.a_faire_recycler_view);
+        afairerecyclerView.setVisibility(View.GONE);
 
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
+        toDoList = new ArrayList<>();
+        toDoList.add("Horse");
+        toDoList.add("Cow");
+        toDoList.add("Camel");
+        toDoList.add("Sheep");
+        toDoList.add("Goat");
 
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.a_faire_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new Adapter(getContext(), animalNames);
+        adapter = new AdapterAFaire(getContext(), toDoList);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -95,7 +105,16 @@ public class AFaire extends Fragment implements View.OnClickListener, Adapter.It
     @Override
     public void onClick(View v) {
         if(v == button) {
-            Toast.makeText(getContext(), "appui sur le bouton", Toast.LENGTH_SHORT).show();
+            button.setVisibility(View.GONE);
+            afaire.setVisibility(View.GONE);
+            retour.setVisibility(View.VISIBLE);
+            afairerecyclerView.setVisibility(View.VISIBLE);
+        }
+        else if(v == retour){
+            button.setVisibility(View.VISIBLE);
+            afaire.setVisibility(View.VISIBLE);
+            retour.setVisibility(View.GONE);
+            afairerecyclerView.setVisibility(View.GONE);
         }
     }
 

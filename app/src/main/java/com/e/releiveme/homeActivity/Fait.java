@@ -3,24 +3,30 @@ package com.e.releiveme.homeActivity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.e.releiveme.Models.AdapterFait;
 import com.e.releiveme.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fait#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Fait extends Fragment implements android.view.View.OnClickListener {
+import java.util.ArrayList;
 
-    private Button button;
-    private View View;
+public class Fait extends Fragment implements View.OnClickListener, AdapterFait.ItemClickListener {
+
+    private Button button, retour;
+    private TextView fait;
+    private RecyclerView faitrecyclerView;
+    private View view;
+    public AdapterFait adapter;
+    private ArrayList<String> toDoList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +47,7 @@ public class Fait extends Fragment implements android.view.View.OnClickListener 
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fait.
+     * @return A new instance of fragment AFaire.
      */
     // TODO: Rename and change types and number of parameters
     public static Fait newInstance(String param1, String param2) {
@@ -65,18 +71,55 @@ public class Fait extends Fragment implements android.view.View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View = inflater.inflate(R.layout.fragment_fait, container, false);
+        view = inflater.inflate(R.layout.fragment_fait, container, false);
 
-        button = (Button) View.findViewById(R.id.button);
+        button = (Button) view.findViewById(R.id.buttonFait);
         button.setOnClickListener(this);
+        retour = (Button) view.findViewById(R.id.returnFait);
+        retour.setOnClickListener(this);
+        retour.setVisibility(View.GONE);
+        fait = (TextView) view.findViewById(R.id.fait);
+        faitrecyclerView = (RecyclerView) view.findViewById(R.id.fait_recycler_view);
+        faitrecyclerView.setVisibility(View.GONE);
 
-        return View;
+        toDoList = new ArrayList<>();
+        toDoList.add("Cheval");
+        toDoList.add("Vache");
+        toDoList.add("Chameau");
+        toDoList.add("Mouton");
+        toDoList.add("Chevre");
+
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.fait_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AdapterFait(getContext(), toDoList);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),1);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        return view;
     }
 
     @Override
-    public void onClick(android.view.View v) {
+    public void onClick(View v) {
         if(v == button) {
-            Toast.makeText(getContext(), "appui sur le bouton", Toast.LENGTH_SHORT).show();
+            button.setVisibility(View.GONE);
+            fait.setVisibility(View.GONE);
+            retour.setVisibility(View.VISIBLE);
+            faitrecyclerView.setVisibility(View.VISIBLE);
         }
+        else if(v == retour){
+            button.setVisibility(View.VISIBLE);
+            fait.setVisibility(View.VISIBLE);
+            retour.setVisibility(View.GONE);
+            faitrecyclerView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 }
