@@ -1,4 +1,4 @@
-package com.e.releiveme.startActivity;
+package com.e.releiveme.homeActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,14 +15,14 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-public class MainActivity extends FragmentActivity implements AmbientModeSupport.AmbientCallbackProvider {
+public class HomeActivity extends FragmentActivity implements AmbientModeSupport.AmbientCallbackProvider {
 
     private ImageView qrImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         // Find the view pager that will
         // allow the user to swipe

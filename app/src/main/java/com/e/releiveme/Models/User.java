@@ -1,5 +1,6 @@
 package com.e.releiveme.Models;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,6 +8,8 @@ public class User {
     private String UserId;
     private String FirstName;
     private String FamilyName;
+     private Date birthDate;
+    private List<Task> taskList;
 
     public String getUserId() {
         return UserId;
@@ -28,6 +31,10 @@ public class User {
         FamilyName = familyName;
     }
 
+    public Date getBirthDate() { return birthDate; }
+
+    public void setBirthDate(Date birthDate) { this.birthDate = birthDate; }
+
     public List<Task> getTaskList() {
         return taskList;
     }
@@ -35,8 +42,6 @@ public class User {
     public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
-
-    private List<Task> taskList;
 
     public User(){
         this.UserId=UUID.randomUUID().toString();

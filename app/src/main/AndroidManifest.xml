@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
@@ -32,15 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.e.releiveme.startActivity.StartActivity"
+            android:label="@string/app_name">
+        </activity>
 
         <activity
-            android:name="com.e.releiveme.startActivity.MainActivity"
+            android:name="com.e.releiveme.homeActivity.HomeActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-            </intent-filter>
         </activity>
 
     </application>

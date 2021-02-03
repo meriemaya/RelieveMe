@@ -1,4 +1,4 @@
-package com.e.releiveme.startActivity;
+package com.e.releiveme.homeActivity;
 
 import android.os.Bundle;
 
