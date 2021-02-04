@@ -14,18 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.e.releiveme.Models.AdapterAFaire;
+import com.e.releiveme.Models.Adapter;
 import com.e.releiveme.R;
 
 import java.util.ArrayList;
 
-public class AFaire extends Fragment implements View.OnClickListener, AdapterAFaire.ItemClickListener {
+public class AFaire extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
 
     private Button button, retour;
     private TextView afaire;
     private RecyclerView afairerecyclerView;
     private View view;
-    public AdapterAFaire adapter;
+    public Adapter adapter;
     private ArrayList<String> toDoList;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -92,7 +92,7 @@ public class AFaire extends Fragment implements View.OnClickListener, AdapterAFa
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.a_faire_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AdapterAFaire(getContext(), toDoList);
+        adapter = new Adapter(getContext(), toDoList);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 

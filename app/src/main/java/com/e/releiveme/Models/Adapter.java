@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.e.releiveme.R;
 import java.util.List;
 
-public class AdapterFait extends RecyclerView.Adapter<AdapterFait.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public AdapterFait(Context context, List<String> data) {
+    public Adapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }

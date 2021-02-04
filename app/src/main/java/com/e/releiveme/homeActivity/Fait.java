@@ -14,18 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.e.releiveme.Models.AdapterFait;
+import com.e.releiveme.Models.Adapter;
 import com.e.releiveme.R;
 
 import java.util.ArrayList;
 
-public class Fait extends Fragment implements View.OnClickListener, AdapterFait.ItemClickListener {
+public class Fait extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
 
     private Button button, retour;
     private TextView fait;
     private RecyclerView faitrecyclerView;
     private View view;
-    public AdapterFait adapter;
+    public Adapter adapter;
     private ArrayList<String> toDoList;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -73,13 +73,13 @@ public class Fait extends Fragment implements View.OnClickListener, AdapterFait.
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fait, container, false);
 
-        button = (Button) view.findViewById(R.id.buttonFait);
+        button = (Button) view.findViewById(R.id.buttonAFaire);
         button.setOnClickListener(this);
-        retour = (Button) view.findViewById(R.id.returnFait);
+        retour = (Button) view.findViewById(R.id.returnAFaire);
         retour.setOnClickListener(this);
         retour.setVisibility(View.GONE);
-        fait = (TextView) view.findViewById(R.id.fait);
-        faitrecyclerView = (RecyclerView) view.findViewById(R.id.fait_recycler_view);
+        fait = (TextView) view.findViewById(R.id.afaire);
+        faitrecyclerView = (RecyclerView) view.findViewById(R.id.a_faire_recycler_view);
         faitrecyclerView.setVisibility(View.GONE);
 
         toDoList = new ArrayList<>();
@@ -90,9 +90,9 @@ public class Fait extends Fragment implements View.OnClickListener, AdapterFait.
         toDoList.add("Chevre");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.fait_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.a_faire_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AdapterFait(getContext(), toDoList);
+        adapter = new Adapter(getContext(), toDoList);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
