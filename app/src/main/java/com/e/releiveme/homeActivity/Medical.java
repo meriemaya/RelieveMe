@@ -1,12 +1,6 @@
 package com.e.releiveme.homeActivity;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +8,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.e.releiveme.Models.Adapter;
 import com.e.releiveme.R;
 
 import java.util.ArrayList;
 
-public class Fait extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
-
+public class Medical extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
     private Button button, retour;
-    private TextView fait;
-    private RecyclerView faitrecyclerView;
+    private TextView medical;
+    private RecyclerView medicalrecyclerView;
     private View view;
     public Adapter adapter;
     private ArrayList<String> toDoList;
@@ -37,7 +35,7 @@ public class Fait extends Fragment implements View.OnClickListener, Adapter.Item
     private String mParam1;
     private String mParam2;
 
-    public Fait() {
+    public Medical() {
         // Required empty public constructor
     }
 
@@ -50,8 +48,8 @@ public class Fait extends Fragment implements View.OnClickListener, Adapter.Item
      * @return A new instance of fragment AFaire.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fait newInstance(String param1, String param2) {
-        Fait fragment = new Fait();
+    public static Medical newInstance(String param1, String param2) {
+        Medical fragment = new Medical();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,26 +69,26 @@ public class Fait extends Fragment implements View.OnClickListener, Adapter.Item
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_fait, container, false);
+        view = inflater.inflate(R.layout.fragment_medical, container, false);
 
-        button = (Button) view.findViewById(R.id.buttonFait);
+        button = (Button) view.findViewById(R.id.buttonMedical);
         button.setOnClickListener(this);
-        retour = (Button) view.findViewById(R.id.returnFait);
+        retour = (Button) view.findViewById(R.id.returnMedical);
         retour.setOnClickListener(this);
         retour.setVisibility(View.GONE);
-        fait = (TextView) view.findViewById(R.id.fait);
-        faitrecyclerView = (RecyclerView) view.findViewById(R.id.fait_recycler_view);
-        faitrecyclerView.setVisibility(View.GONE);
+        medical = (TextView) view.findViewById(R.id.medical);
+        medicalrecyclerView = (RecyclerView) view.findViewById(R.id.medical_recycler_view);
+        medicalrecyclerView.setVisibility(View.GONE);
 
         toDoList = new ArrayList<>();
-        toDoList.add("Cheval");
-        toDoList.add("Vache");
-        toDoList.add("Chameau");
-        toDoList.add("Mouton");
-        toDoList.add("Chevre");
+        toDoList.add("rdv1");
+        toDoList.add("rdv2");
+        toDoList.add("rdv3");
+        toDoList.add("rdv4");
+        toDoList.add("rdv5");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.fait_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.medical_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new Adapter(getContext(), toDoList);
         adapter.setClickListener(this);
@@ -106,15 +104,15 @@ public class Fait extends Fragment implements View.OnClickListener, Adapter.Item
     public void onClick(View v) {
         if(v == button) {
             button.setVisibility(View.GONE);
-            fait.setVisibility(View.GONE);
+            medical.setVisibility(View.GONE);
             retour.setVisibility(View.VISIBLE);
-            faitrecyclerView.setVisibility(View.VISIBLE);
+            medicalrecyclerView.setVisibility(View.VISIBLE);
         }
         else if(v == retour){
             button.setVisibility(View.VISIBLE);
-            fait.setVisibility(View.VISIBLE);
+            medical.setVisibility(View.VISIBLE);
             retour.setVisibility(View.GONE);
-            faitrecyclerView.setVisibility(View.GONE);
+            medicalrecyclerView.setVisibility(View.GONE);
         }
     }
 

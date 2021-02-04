@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.e.releiveme.homeActivity.Agenda;
+import com.e.releiveme.homeActivity.Medical;
 import com.e.releiveme.homeActivity.Fait;
 import com.e.releiveme.homeActivity.AFaire;
 import com.e.releiveme.homeActivity.Sante;
@@ -26,7 +26,7 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
             return new Fait();
         }
         else if (position == 2) {
-            return new Agenda();
+            return new Medical();
         }
         else {
             return new Sante();
