@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.wearable.activity.WearableActivity;
 
 import com.e.releiveme.R;
-import com.e.releiveme.ViewModels.AddUser;
 import com.e.releiveme.homeActivity.HomeActivity;
 
 public class Splash extends WearableActivity {
@@ -21,7 +20,8 @@ public class Splash extends WearableActivity {
 
         // Check if user not added then display qr code
         // else go to home activity
-        AddUser addUser =AddUser.getInstance();
+        AddUserViewModel addUser = AddUserViewModel.getInstance();
+
         if(addUser.getWatchUser() == null){
             /* New Handler to start the Qr Activity
              * and close this Splash-Screen after some seconds.*/

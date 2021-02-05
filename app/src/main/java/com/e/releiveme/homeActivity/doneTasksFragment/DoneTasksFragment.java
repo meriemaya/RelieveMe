@@ -1,4 +1,4 @@
-package com.e.releiveme.homeActivity;
+package com.e.releiveme.homeActivity.doneTasksFragment;
 
 import android.os.Bundle;
 
@@ -7,15 +7,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.e.releiveme.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Agenda#newInstance} factory method to
+ * Use the {@link DoneTasksFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Agenda extends Fragment {
+public class DoneTasksFragment extends Fragment implements android.view.View.OnClickListener {
+
+    private Button button;
+    private View View;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +31,7 @@ public class Agenda extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Agenda() {
+    public DoneTasksFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +41,11 @@ public class Agenda extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Agenda.
+     * @return A new instance of fragment Fait.
      */
     // TODO: Rename and change types and number of parameters
-    public static Agenda newInstance(String param1, String param2) {
-        Agenda fragment = new Agenda();
+    public static DoneTasksFragment newInstance(String param1, String param2) {
+        DoneTasksFragment fragment = new DoneTasksFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,9 +63,20 @@ public class Agenda extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agenda, container, false);
+        View = inflater.inflate(R.layout.fragment_fait, container, false);
+
+        button = (Button) View.findViewById(R.id.button);
+        button.setOnClickListener(this);
+
+        return View;
+    }
+
+    @Override
+    public void onClick(android.view.View v) {
+        if(v == button) {
+            Toast.makeText(getContext(), "appui sur le bouton", Toast.LENGTH_SHORT).show();
+        }
     }
 }
