@@ -1,14 +1,17 @@
 package com.e.releiveme.startActivity;
 
+import com.e.releiveme.apiClient.Communicator;
 import com.e.releiveme.data.Models.User;
 
 public class AddUserViewModel {
 
     private static AddUserViewModel addUser =null;
-    private static User watchUser = null;
+    private static final User watchUser = new User();;
     private static String  watchUserId;
+    private Communicator communicator;
 
     protected AddUserViewModel(){
+
     }
 
     public static AddUserViewModel getInstance(){
@@ -21,7 +24,6 @@ public class AddUserViewModel {
         return watchUserId;
     }
     public static void setWatchUser(){
-        watchUser =new User();
         watchUserId=watchUser.getUserId();
         // requestProfile
     }
