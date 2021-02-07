@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homeActivity.toDoFragment.ToDoTaskFragment">
+    tools:context=".homeActivity.AFaire">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,48 +15,34 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonAFaire"
+            android:id="@+id/buttonSante"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
-            android:background="@drawable/afaire"
+            android:background="@drawable/sante"
             android:backgroundTint="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/afaire"
+            android:id="@+id/sante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
-            android:text="A faire"
+            android:text="Santé"
             android:textColor="#FFFFFF" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/heartbeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--"
+            android:textColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/returnAFaire"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:layout_gravity="center"
-                android:text="Retour"
-                android:textSize="8sp" />
-
-            <androidx.wear.widget.WearableRecyclerView
-                android:id="@+id/a_faire_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-            </androidx.wear.widget.WearableRecyclerView>
-        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

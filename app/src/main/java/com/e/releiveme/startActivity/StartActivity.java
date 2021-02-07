@@ -35,8 +35,8 @@ public class StartActivity extends WearableActivity implements View.OnClickListe
     }
     protected void generateQrCode(ImageView v){
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        AddUserViewModel.setWatchUser();
-        String userId= AddUserViewModel.getInstance().getWatchUserId() ;
+        AddUser.setWatchUser();
+        String userId= AddUser.getInstance().getWatchUserId() ;
 
         try{
             BitMatrix bitMatrix = multiFormatWriter.encode(userId, BarcodeFormat.QR_CODE,500,500);

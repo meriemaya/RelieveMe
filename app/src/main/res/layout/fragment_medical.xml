@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homeActivity.toDoFragment.ToDoTaskFragment">
+    tools:context=".homeActivity.Medical">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,24 +15,24 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonAFaire"
+            android:id="@+id/buttonMedical"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
-            android:background="@drawable/afaire"
+            android:background="@drawable/medecin"
             android:backgroundTint="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/afaire"
+            android:id="@+id/medical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
-            android:text="A faire"
+            android:text="Rendez-vous médicaux"
             android:textColor="#FFFFFF" />
 
         <LinearLayout
@@ -41,7 +41,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/returnAFaire"
+                android:id="@+id/returnMedical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
@@ -51,7 +51,7 @@
                 android:textSize="8sp" />
 
             <androidx.wear.widget.WearableRecyclerView
-                android:id="@+id/a_faire_recycler_view"
+                android:id="@+id/medical_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
