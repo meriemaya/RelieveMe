@@ -1,19 +1,19 @@
-package com.e.releiveme.startActivity;
+package com.e.releiveme.ViewModels;
 
-import com.e.releiveme.data.Models.User;
+import com.e.releiveme.Models.User;
 
-public class AddUserViewModel {
+public class AddUser {
 
-    private static AddUserViewModel addUser =null;
+    private static AddUser addUser =null;
     private static User watchUser = null;
     private static String  watchUserId;
 
-    protected AddUserViewModel(){
+    protected AddUser(){
     }
 
-    public static AddUserViewModel getInstance(){
+    public static AddUser getInstance(){
         if (watchUser == null)
-            return new AddUserViewModel();
+            return new AddUser();
         return addUser;
 
     }

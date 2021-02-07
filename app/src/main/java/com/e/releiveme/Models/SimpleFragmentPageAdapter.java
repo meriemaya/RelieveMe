@@ -1,12 +1,13 @@
-package com.e.releiveme.homeActivity;
+package com.e.releiveme.Models;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.e.releiveme.homeActivity.agendaFragment.Agenda;
-import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksFragment;
-import com.e.releiveme.homeActivity.toDoFragment.ToDoTaskFragment;
+import com.e.releiveme.homeActivity.Medical;
+import com.e.releiveme.homeActivity.Fait;
+import com.e.releiveme.homeActivity.AFaire;
+import com.e.releiveme.homeActivity.Sante;
 
 public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
 
@@ -19,20 +20,23 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position)
     {
         if (position == 0) {
-            return new ToDoTaskFragment();
+            return new AFaire();
         }
         else if (position == 1) {
-            return new DoneTasksFragment();
+            return new Fait();
+        }
+        else if (position == 2) {
+            return new Medical();
         }
         else {
-            return new Agenda();
+            return new Sante();
         }
     }
 
     @Override
     public int getCount()
     {
-        return 3;
+        return 4;
     }
 }
 

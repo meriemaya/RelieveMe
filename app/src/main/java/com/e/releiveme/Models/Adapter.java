@@ -1,4 +1,4 @@
-package com.e.releiveme.homeActivity.toDoFragment;
+package com.e.releiveme.Models;
 
 import android.content.Context;
 import android.view.LayoutInflater;

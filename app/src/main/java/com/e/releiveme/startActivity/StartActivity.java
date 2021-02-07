@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.e.releiveme.R;
+import com.e.releiveme.ViewModels.AddUser;
 import com.e.releiveme.homeActivity.HomeActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -35,8 +38,8 @@ public class StartActivity extends WearableActivity implements View.OnClickListe
     }
     protected void generateQrCode(ImageView v){
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        AddUserViewModel.setWatchUser();
-        String userId= AddUserViewModel.getInstance().getWatchUserId() ;
+        AddUser.setWatchUser();
+        String userId=AddUser.getInstance().getWatchUserId() ;
 
         try{
             BitMatrix bitMatrix = multiFormatWriter.encode(userId, BarcodeFormat.QR_CODE,500,500);
