@@ -1,4 +1,4 @@
-package com.e.releiveme.Models;
+package com.e.releiveme.data.Models;
 
 import java.util.Date;
 import java.util.List;
