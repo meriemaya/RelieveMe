@@ -3,20 +3,20 @@ package com.e.releiveme.startActivity;
 import com.e.releiveme.apiClient.Communicator;
 import com.e.releiveme.data.Models.User;
 
-public class AddUserViewModel {
+public class AddUser {
 
-    private static AddUserViewModel addUser =null;
+    private static AddUser addUser =null;
     private static final User watchUser = new User();;
     private static String  watchUserId;
     private Communicator communicator;
 
-    protected AddUserViewModel(){
+    protected AddUser(){
 
     }
 
-    public static AddUserViewModel getInstance(){
+    public static AddUser getInstance(){
         if (watchUser == null)
-            return new AddUserViewModel();
+            return new AddUser();
         return addUser;
 
     }
