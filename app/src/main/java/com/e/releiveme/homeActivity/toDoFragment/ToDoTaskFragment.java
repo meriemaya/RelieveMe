@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 
 public class ToDoTaskFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
 
-    private Button button, retour;
-    private TextView afaire;
+    private Button button, retour, retourliste;
+    private TextView afaire, tachetitre, tachedescription, tachedate;
     public Adapter adapter;
     RecyclerView recyclerView;
     TodoTaskViewModel taskViewModel;
@@ -85,6 +85,15 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
         retour.setOnClickListener(this);
         retour.setVisibility(View.GONE);
         afaire = (TextView) view.findViewById(R.id.afaire);
+        retourliste = (Button) view.findViewById(R.id.afairetacheretour);
+        retourliste.setOnClickListener(this);
+        retourliste.setVisibility(View.GONE);
+        tachetitre = (TextView) view.findViewById(R.id.afairetachetitre);
+        tachetitre.setVisibility(View.GONE);
+        tachedescription = (TextView) view.findViewById(R.id.afairetachedescription);
+        tachedescription.setVisibility(View.GONE);
+        tachedate = (TextView) view.findViewById(R.id.afairetachedate);
+        tachedate.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
 
     }
@@ -96,8 +105,8 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
         taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-               List<String> description= tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
-              populateData(description);
+                List<String> description= tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
+                populateData(description);
             }
         });
     }
@@ -138,10 +147,27 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
             retour.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
         }
+        else if(v == retourliste){
+            retour.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+            retourliste.setVisibility(View.GONE);
+            tachetitre.setVisibility(View.GONE);
+            tachedescription.setVisibility(View.GONE);
+            tachedate.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        retour.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+        retourliste.setVisibility(View.VISIBLE);
+        tachetitre.setVisibility(View.VISIBLE);
+        tachedescription.setVisibility(View.VISIBLE);
+        tachedate.setVisibility(View.VISIBLE);
+        tachetitre.setText(adapter.getItem(position));
+        tachedescription.setText("description");
+        tachedate.setText("01/01/01 12:12");
     }
 }

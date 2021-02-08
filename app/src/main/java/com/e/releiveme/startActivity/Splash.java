@@ -23,7 +23,7 @@ public class Splash extends WearableActivity {
         AddUser addUser = AddUser.getInstance();
 
         //if(addUser.getWatchUser() == null){
-        if(0 == 0){
+        if(0 == 1){
             /* New Handler to start the Qr Activity
              * and close this Splash-Screen after some seconds.*/
             new Handler().postDelayed(new Runnable(){

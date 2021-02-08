@@ -33,10 +33,11 @@ public class Repository {
         return mAllTasks;
     }
 
-
     public LiveData<List<Task>> getAllToDoTasks() {
         return allToDoTasks;
     }
+
+    public void updateStateTask(String taskID){ mTaskDAO.updateStateTask(taskID); }
 
     public LiveData<List<Task>> getAllDoneTasks() {
         return allDoneTasks;

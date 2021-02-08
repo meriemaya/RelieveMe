@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.releiveme.R;
+import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.homeActivity.toDoFragment.Adapter;
-import com.e.releiveme.homeActivity.toDoFragment.TodoTaskViewModel;
+import com.e.releiveme.homeActivity.doneTasksFragment.DoneTaskViewModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
     private TextView fait;
     public Adapter adapter;
     RecyclerView recyclerView;
-    TodoTaskViewModel taskViewModel;
+    DoneTaskViewModel taskViewModel;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -69,7 +70,7 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        //taskViewModel = new TodoTaskViewModel(getActivity().getApplication());
+        taskViewModel = new DoneTaskViewModel(getActivity().getApplication());
 
     }
 
@@ -94,12 +95,12 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
      * @param view
      */
     private void initObservers(View view) {
-        //taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
-            //public void onChanged(List<Task> tasks) {
-                //List<String> description= tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
-                //populateData(description);
-            //}
-        //});
+        taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
+            public void onChanged(List<Task> tasks) {
+                List<String> description= tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
+                populateData(description);
+            }
+        });
     }
 
     /**

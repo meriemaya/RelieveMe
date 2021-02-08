@@ -56,6 +56,35 @@
                 android:layout_height="match_parent" >
 
             </androidx.wear.widget.WearableRecyclerView>
+
+            <Button
+                android:id="@+id/afairetacheretour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:layout_gravity="center"
+                android:text="Retour"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/afairetachetitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/afairetachedescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/afairetachedate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
         </LinearLayout>
     </LinearLayout>
 
