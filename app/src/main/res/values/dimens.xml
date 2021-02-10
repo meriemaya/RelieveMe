@@ -5,6 +5,7 @@
     to square screens.
     -->
     <dimen name="box_inset_layout_padding">0dp</dimen>
+    <dimen name="Title_xl">80dp</dimen>
 
     <!--
     This padding applies to both square and round screens. The total padding between the buttons
@@ -12,4 +13,8 @@
     inner_frame_layout_padding (below variable) on round screens.
     -->
     <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="margin_m">12dp</dimen>
+    <dimen name="margin_l">20dp</dimen>
+    <dimen name="margin_xl">43dp</dimen>
+    <dimen name="text_m">10sp</dimen>
 </resources>

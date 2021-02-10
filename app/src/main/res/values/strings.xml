@@ -5,4 +5,11 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_logo">Relieve Me</string>
+    <string name="qr_view">QR Code</string>
+    <string name="idText">Menu</string>
+    <string name="dialog_fire_missiles">La tâche est effectuée</string>
+    <string name="dialog_message">La tâche est effectuée</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="cancel">Pas encore</string>
 </resources>
