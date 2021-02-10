@@ -1,12 +1,12 @@
 package com.e.releiveme.homeActivity.toDoFragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -16,17 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.releiveme.R;
 import com.e.releiveme.data.Models.Task;
+import com.e.releiveme.utils.AlertDialogClass;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ToDoTaskFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
+public class ToDoTaskFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener ,AlertDialogClass.DialogListener {
 
     private Button button, retour;
     private TextView afaire;
     public Adapter adapter;
     RecyclerView recyclerView;
     TodoTaskViewModel taskViewModel;
+    AlertDialogClass alert;
+
+
+    SharedPreferences sharedPreferences;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +46,7 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
 
     public ToDoTaskFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -68,7 +74,7 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-         taskViewModel = new TodoTaskViewModel(getActivity().getApplication());
+        taskViewModel = new TodoTaskViewModel(getContext());
 
     }
 
@@ -96,8 +102,9 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
         taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-               List<String> description= tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
-              populateData(description);
+
+                List<String> description = tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
+                populateData(description);
             }
         });
     }
@@ -105,13 +112,14 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
     /**
      * @param data
      */
-    private void populateData(List<String> data){
+    private void populateData(List<String> data) {
         adapter = new Adapter(getContext(), data);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), 1);
         recyclerView.addItemDecoration(dividerItemDecoration);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -123,25 +131,34 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
     }
 
 
-
     @Override
     public void onClick(View v) {
-        if(v == button) {
+        if (v == button) {
             button.setVisibility(View.GONE);
             afaire.setVisibility(View.GONE);
             retour.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.VISIBLE);
-        }
-        else if(v == retour){
+        } else if (v == retour) {
             button.setVisibility(View.VISIBLE);
             afaire.setVisibility(View.VISIBLE);
             retour.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
         }
+        if(v.getId()==R.id.dialog_ok){
+            taskViewModel.updateTaskDone();
+            alert.dismiss();
+        }else if (v.getId()==R.id.dialog_cancel){
+        alert.dismiss();
+        }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        taskViewModel.selectedTask = position;
+        alert= new AlertDialogClass(this);
+        alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
+
     }
+
+
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:layout_marginLeft="@dimen/screen_percentage_15"
     android:layout_marginTop="@dimen/screen_percentage_15"
     android:layout_marginBottom="@dimen/screen_percentage_15"

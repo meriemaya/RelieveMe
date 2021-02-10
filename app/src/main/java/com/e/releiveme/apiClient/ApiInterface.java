@@ -9,18 +9,21 @@ import retrofit2.http.Query;
 
 
 public interface ApiInterface {
-    //This method is used for "POST"
+
+    // String SERVER_URL = "http://handiman.univ-paris8.fr/~imane/relieveme_php/";
+    String SERVER_URL = "http://192.168.1.184/";
+
     @FormUrlEncoded
-    @POST("/api.php")
+    @POST("relieveme_php/updateTask.php")
     Call<ServerResponse> post(
             @Field("method") String method,
             @Field("username") String username,
-            @Field("password") String password
+            @Field("password") String taskId
     );
 
     //This method is used for "GET"
-    @GET("/api.php")
-    Call<ServerResponse> get(
+    @GET("relieveme_php/tasks.php")
+    Call<ServerResponse> getUser(
             @Query("method") String method,
             @Query("username") String username,
             @Query("password") String password

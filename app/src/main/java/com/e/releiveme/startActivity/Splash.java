@@ -18,9 +18,7 @@ public class Splash extends WearableActivity {
         super.onCreate(icicle);
         setContentView(R.layout.splash);
 
-        // Check if user not added then display qr code
-        // else go to home activity
-        AddUser addUser = AddUser.getInstance();
+
 
         //if(addUser.getWatchUser() == null){
         if(0 == 0){
