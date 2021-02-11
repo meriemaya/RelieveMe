@@ -2,11 +2,13 @@ package com.e.releiveme.data;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.e.releiveme.data.Models.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
@@ -15,6 +17,7 @@ public class Repository {
     private LiveData<List<Task>> mAllTasks;
     private LiveData<List<Task>> allToDoTasks;
     private LiveData<List<Task>> allDoneTasks;
+    static String TAG= "Repository";
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -51,7 +54,14 @@ public class Repository {
 
     public void insertAllTasks(List<Task> tasks) {
         DBRoom.databaseWriteExecutor.execute(() -> {
+            /*for (Task task:tasks) {
+                this.insert(task);
+                Log.d(TAG, "insertAllTasks: "+task.getTaskDescription());
+                Log.d(TAG, "insertAllTasks: "+task.getTaskId());
+
+            }*/
             mTaskDAO.insertAll(tasks);
+            //Log.d(TAG, "insertAllTasks: "+String.valueOf(tasks.size()));
         });
     }
 }

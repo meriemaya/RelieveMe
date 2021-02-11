@@ -19,15 +19,15 @@ public interface  TaskDAO {
     void insert(Task task);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Task> tasks);
+    abstract void insertAll(List<Task> tasks);
 
     @Delete
     void delete(Task task);
 
     @Query("UPDATE task_table SET taskDate = :newDate WHERE taskId = :taskId")
-    int updateTour(String taskId , Date newDate);
+    int updateTask(String taskId , Date newDate);
 
-    @Query("UPDATE task_table SET taskState = 'DONE' WHERE taskId = :taskId")
+    @Query("UPDATE task_table SET taskState = '1' WHERE taskId = :taskId")
     void updateStateTask(String taskId);
 
     @Query("DELETE FROM task_table")
@@ -36,9 +36,9 @@ public interface  TaskDAO {
     @Query("SELECT * FROM task_table ORDER BY taskDate ASC")
     LiveData<List<Task>> getOrderedTasks();
 
-    @Query("SELECT * FROM task_table WHERE taskState = 'TODO' ORDER BY taskDate ASC ")
+    @Query("SELECT * FROM task_table WHERE taskState = '0' ORDER BY taskDate ASC ")
     LiveData<List<Task>> getToDoTasks();
 
-    @Query("SELECT * FROM task_table WHERE taskState = 'DONE' ORDER BY taskDate ASC")
+    @Query("SELECT * FROM task_table WHERE taskState = '1' ORDER BY taskDate ASC")
     LiveData<List<Task>> getDoneTasks();
 }

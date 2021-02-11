@@ -17,9 +17,8 @@ import java.util.TimeZone;
 public class Task {
 
     @PrimaryKey()
-    @NonNull
     @ColumnInfo(name = "TaskId")
-    @SerializedName("TaskId")
+    @SerializedName("taskId")
     private int taskId;
 
     @SerializedName("taskDate")

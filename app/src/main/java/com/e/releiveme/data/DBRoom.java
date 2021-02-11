@@ -14,7 +14,7 @@ import com.e.releiveme.data.Models.Task;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Task.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class}, version = 3, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class DBRoom extends RoomDatabase {
 

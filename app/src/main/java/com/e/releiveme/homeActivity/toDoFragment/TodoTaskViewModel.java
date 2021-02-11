@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -30,13 +31,16 @@ public class TodoTaskViewModel  {
     public int selectedTask=-1;
     SharedPreferences sharedPref ;
 
+    static String TAG="toDoTaskViewModel";
+
     public final LiveData<List<Task>> mAllTasks;
 
     public TodoTaskViewModel(Context context) {
         mRepository = new Repository(context);
-        mAllTasks = mRepository.getAllTasks();
+        mAllTasks = mRepository.getAllToDoTasks();
         service= new UserService();
         sharedPref= context.getSharedPreferences(StartActivity.SHARED_NAME,0);
+        Log.i(TAG, "TodoTaskViewModel: "+String.valueOf(mAllTasks.toString()));
     }
 
     public void insert(Task task) { mRepository.insert(task); }
@@ -44,7 +48,7 @@ public class TodoTaskViewModel  {
     LiveData<List<Task>> getAllTasks() { return mAllTasks; }
 
     LiveData<List<String>> getTasksLiveData() {
-        LiveData<List<Task>> tasksLiveData = mRepository.getAllTasks();
+        LiveData<List<Task>> tasksLiveData = mRepository.getAllToDoTasks();
         return Transformations.map(tasksLiveData, userList -> {
             return userList.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
         });

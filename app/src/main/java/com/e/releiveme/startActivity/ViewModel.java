@@ -9,9 +9,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.e.releiveme.apiClient.ServerResponse;
 import com.e.releiveme.apiClient.UserService;
+import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.data.Repository;
 
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +54,8 @@ public class ViewModel implements Callback<ServerResponse> {
             ServerResponse res = response.body();
             sharedPreferences.edit().putString(StartActivity.USER_NAME,res.getUsername()).commit();
             sharedPreferences.edit().putString(StartActivity.USER_BIRTH_DATE,res.getBirthDate()).commit();
-            repository.insertAllTasks(res.getTasks());
+           List<Task> tasks = new ArrayList(res.getTasks());
+            repository.insertAllTasks(tasks);
             loaded.setValue(true);
        }else {
            loaded.setValue(false);

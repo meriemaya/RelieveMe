@@ -2,6 +2,7 @@ package com.e.releiveme.homeActivity.toDoFragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    static String TAG="toDoTaskFragment";
 
 
     public ToDoTaskFragment() {
@@ -102,7 +105,7 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
         taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-
+                Log.i(TAG, "onChanged: "+String.valueOf(tasks.size()));
                 List<String> description = tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
                 populateData(description);
             }

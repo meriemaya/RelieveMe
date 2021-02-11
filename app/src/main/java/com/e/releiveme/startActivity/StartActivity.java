@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.wearable.activity.WearableActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.LifecycleOwner;
 
 import com.e.releiveme.R;
 import com.e.releiveme.homeActivity.HomeActivity;
@@ -19,7 +16,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-import com.squareup.otto.Subscribe;
 
 import java.util.UUID;
 
@@ -31,7 +27,7 @@ public class StartActivity extends FragmentActivity{
     public static final String SHARED_NAME="userData";
     public static final String USER_NAME ="userName";
     public static final String USER_BIRTH_DATE ="userBirth";
-    String userId ;
+    String userName;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -68,15 +64,15 @@ public class StartActivity extends FragmentActivity{
 
     protected void generateQrCode(ImageView v){
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        userId =sharedPreferences.getString(USER_KEY,null);
-        if(userId!=null){
+        userName =sharedPreferences.getString(USER_NAME,null);
+        if(userName !=null){
            onUserReady();
         }else{
-            userId = UUID.randomUUID().toString();
-            sharedPreferences.edit().putString(USER_KEY,userId).commit();
+            userName = UUID.randomUUID().toString();
+            sharedPreferences.edit().putString(USER_KEY, userName).commit();
 
             try{
-                BitMatrix bitMatrix = multiFormatWriter.encode(userId, BarcodeFormat.QR_CODE,500,500);
+                BitMatrix bitMatrix = multiFormatWriter.encode(userName, BarcodeFormat.QR_CODE,500,500);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 v.setImageBitmap(bitmap);
