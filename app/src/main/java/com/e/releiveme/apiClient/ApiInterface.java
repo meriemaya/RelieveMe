@@ -10,11 +10,11 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    // String SERVER_URL = "http://handiman.univ-paris8.fr/~imane/relieveme_php/";
-    String SERVER_URL = "http://192.168.1.184/";
+     String SERVER_URL = "http://handiman.univ-paris8.fr/~imane/";
+    //String SERVER_URL = "http://192.168.0.12/";
 
     @FormUrlEncoded
-    @POST("relieveme_php/updateTask.php")
+    @POST("relieveme_php_v2/updateTask.php")
     Call<ServerResponse> post(
             @Field("method") String method,
             @Field("username") String username,
@@ -22,7 +22,7 @@ public interface ApiInterface {
     );
 
     //This method is used for "GET"
-    @GET("relieveme_php/tasks.php")
+    @GET("relieveme_php_v2/tasks.php")
     Call<ServerResponse> getUser(
             @Query("method") String method,
             @Query("username") String username,
