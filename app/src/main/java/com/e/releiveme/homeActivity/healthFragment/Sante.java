@@ -1,4 +1,4 @@
-package com.e.releiveme.homeActivity.HealthFragment;
+package com.e.releiveme.homeActivity.healthFragment;
 
 import android.content.Context;
 import android.hardware.Sensor;

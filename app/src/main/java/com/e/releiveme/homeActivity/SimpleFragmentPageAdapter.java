@@ -4,7 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.e.releiveme.homeActivity.HealthFragment.Sante;
+import com.e.releiveme.homeActivity.contactFragment.Contact;
+import com.e.releiveme.homeActivity.healthFragment.Sante;
 import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksFragment;
 import com.e.releiveme.homeActivity.medicalFragment.Medical;
 import com.e.releiveme.homeActivity.toDoFragment.ToDoTaskFragment;
@@ -28,15 +29,18 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
         else if (position == 2) {
             return new Medical();
         }
-        else {
+        else if (position == 3){
             return new Sante();
+        }
+        else {
+            return new Contact();
         }
     }
 
     @Override
     public int getCount()
     {
-        return 4;
+        return 5;
     }
 }
 
