@@ -3,57 +3,71 @@ package com.e.releiveme.data.Models;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Entity(tableName = "task_table")
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     @NonNull
     @ColumnInfo(name = "TaskId")
-    private int TaskId;
+    @SerializedName("TaskId")
+    private int taskId;
 
+    @SerializedName("taskDate")
     @ColumnInfo(name = "taskDate")
-    private Date taskDate;
+    private long taskDate;
 
 
+    @SerializedName("taskDescription")
     @ColumnInfo(name = "taskDescription")
     private String taskDescription;
 
-
+    @SerializedName("typeTask")
     @ColumnInfo(name = "typeTask")
     private String typeTask;
 
+    @SerializedName("taskRepetition")
     @ColumnInfo(name = "taskRepetition")
     private String taskRepetition;
 
-
+    @SerializedName("taskState")
     @ColumnInfo(name = "taskState")
-    private String taskState;
+    private Boolean taskState;
 
 
-    @ColumnInfo(name = "taskDuration")
-    private int taskDuration;
+    @SerializedName("endTime")
+    @ColumnInfo(name = "endTime")
+    private  long taskEnd;
 
 
-    public Task(Date taskDate, String taskDescription, String typeTask, String taskRepetition, String taskState, int taskDuration) {
-        this.taskDate = taskDate;
+    @Ignore
+    public Task(int taskId , long taskDate, String taskDescription, String typeTask, String taskRepetition, Boolean taskState, long taskEnd) {
+
+        this.taskId=taskId;
+        this.taskDate =taskDate;
         this.taskDescription = taskDescription;
         this.typeTask = typeTask;
         this.taskRepetition = taskRepetition;
-        this.taskState = "TODO";
-        this.taskDuration = taskDuration;
+        this.taskState = taskState;
+        this.taskEnd = taskEnd;
     }
     public Task(){}
 
     @NonNull
     public int getTaskId() {
-        return TaskId;
+        return taskId;
     }
 
-    public Date getTaskDate() {
+    public long getTaskDate() {
         return taskDate;
     }
 
@@ -69,19 +83,19 @@ public class Task {
         return taskRepetition;
     }
 
-    public String getTaskState() {
+    public Boolean getTaskState() {
         return taskState;
     }
 
-    public int getTaskDuration() {
-        return taskDuration;
+    public long getTaskEnd() {
+        return taskEnd;
     }
 
     public void setTaskId(@NonNull int taskId) {
-        TaskId = taskId;
+        this.taskId = taskId;
     }
 
-    public void setTaskDate(Date taskDate) {
+    public void setTaskDate(long taskDate) {
         this.taskDate = taskDate;
     }
 
@@ -97,11 +111,11 @@ public class Task {
         this.taskRepetition = taskRepetition;
     }
 
-    public void setTaskState(String taskState) {
+    public void setTaskState(Boolean taskState) {
         this.taskState = taskState;
     }
 
-    public void setTaskDuration(int taskDuration) {
-        this.taskDuration = taskDuration;
+    public void setTaskEnd(long taskEnd) {
+        this.taskEnd = taskEnd;
     }
 }

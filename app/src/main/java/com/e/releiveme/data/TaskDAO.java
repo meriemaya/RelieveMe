@@ -18,13 +18,16 @@ public interface  TaskDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Task task);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Task> tasks);
+
     @Delete
     void delete(Task task);
 
-    @Query("UPDATE task_table SET taskDate = :newDate WHERE TaskId = :taskId")
+    @Query("UPDATE task_table SET taskDate = :newDate WHERE taskId = :taskId")
     int updateTour(String taskId , Date newDate);
 
-    @Query("UPDATE task_table SET taskState = 'DONE' WHERE TaskId = :taskId")
+    @Query("UPDATE task_table SET taskState = 'DONE' WHERE taskId = :taskId")
     void updateStateTask(String taskId);
 
     @Query("DELETE FROM task_table")
