@@ -40,7 +40,7 @@ public class Task {
 
     @SerializedName("taskState")
     @ColumnInfo(name = "taskState")
-    private Boolean taskState;
+    private String taskState;
 
 
     @SerializedName("endTime")
@@ -49,7 +49,7 @@ public class Task {
 
 
     @Ignore
-    public Task(int taskId , long taskDate, String taskDescription, String typeTask, String taskRepetition, Boolean taskState, long taskEnd) {
+    public Task(int taskId , long taskDate, String taskDescription, String typeTask, String taskRepetition, String taskState, long taskEnd) {
 
         this.taskId=taskId;
         this.taskDate =taskDate;
@@ -82,7 +82,7 @@ public class Task {
         return taskRepetition;
     }
 
-    public Boolean getTaskState() {
+    public String getTaskState() {
         return taskState;
     }
 
@@ -110,7 +110,7 @@ public class Task {
         this.taskRepetition = taskRepetition;
     }
 
-    public void setTaskState(Boolean taskState) {
+    public void setTaskState(String taskState) {
         this.taskState = taskState;
     }
 

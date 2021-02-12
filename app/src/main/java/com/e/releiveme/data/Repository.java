@@ -28,6 +28,7 @@ public class Repository {
         mAllTasks = mTaskDAO.getOrderedTasks();
         allToDoTasks = mTaskDAO.getToDoTasks();
         allDoneTasks = mTaskDAO.getDoneTasks();
+        //Log.d(TAG, "Repository: todotasks size: "+allToDoTasks.getValue().size());
     }
 
     // Room executes all queries on a separate thread.
@@ -54,14 +55,8 @@ public class Repository {
 
     public void insertAllTasks(List<Task> tasks) {
         DBRoom.databaseWriteExecutor.execute(() -> {
-            /*for (Task task:tasks) {
-                this.insert(task);
-                Log.d(TAG, "insertAllTasks: "+task.getTaskDescription());
-                Log.d(TAG, "insertAllTasks: "+task.getTaskId());
-
-            }*/
             mTaskDAO.insertAll(tasks);
-            //Log.d(TAG, "insertAllTasks: "+String.valueOf(tasks.size()));
+
         });
     }
 }

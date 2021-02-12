@@ -18,7 +18,7 @@ import com.e.releiveme.R;
 
 import java.util.ArrayList;
 
-public class Medical extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
+public class MedicalFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
     private Button button, retour;
     private TextView medical;
     private RecyclerView medicalrecyclerView;
@@ -35,7 +35,7 @@ public class Medical extends Fragment implements View.OnClickListener, Adapter.I
     private String mParam1;
     private String mParam2;
 
-    public Medical() {
+    public MedicalFragment() {
         // Required empty public constructor
     }
 
@@ -48,8 +48,8 @@ public class Medical extends Fragment implements View.OnClickListener, Adapter.I
      * @return A new instance of fragment AFaire.
      */
     // TODO: Rename and change types and number of parameters
-    public static Medical newInstance(String param1, String param2) {
-        Medical fragment = new Medical();
+    public static MedicalFragment newInstance(String param1, String param2) {
+        MedicalFragment fragment = new MedicalFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

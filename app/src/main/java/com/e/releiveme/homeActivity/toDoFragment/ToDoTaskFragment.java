@@ -102,10 +102,9 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
      * @param view
      */
     private void initObservers(View view) {
-        taskViewModel.mAllTasks.observe(this, new Observer<List<Task>>() {
+        taskViewModel.mAllToDoTasks.observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-                Log.i(TAG, "onChanged: "+String.valueOf(tasks.size()));
                 List<String> description = tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
                 populateData(description);
             }
