@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DoneTasksViewModel {
+
     private Repository mRepository;
     private static UserService service;
     public int selectedTask=-1;
@@ -23,11 +24,14 @@ public class DoneTasksViewModel {
     static String TAG="DoneTasksViewModel";
 
     public final LiveData<List<Task>> mAllDoneTasks;
+    public final LiveData<List<Task>> rdvList;
 
     public DoneTasksViewModel(Context context) {
         mRepository = new Repository(context);
         mAllDoneTasks = mRepository.getAllDoneTasks();
         service= new UserService();
+        rdvList = mRepository.getRdvList();
+
 
 
     }

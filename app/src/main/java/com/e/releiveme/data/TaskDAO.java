@@ -41,4 +41,7 @@ public interface  TaskDAO {
 
     @Query("SELECT * FROM task_table WHERE taskState = '1' ORDER BY taskDate ASC ")
     LiveData<List<Task>> getDoneTasks();
+
+    @Query("SELECT * FROM task_table WHERE typeTask = 'rdv' ORDER BY taskDate ASC")
+    LiveData<List<Task>> getRdvList();
 }

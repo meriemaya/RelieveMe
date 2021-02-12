@@ -17,6 +17,7 @@ public class Repository {
     private LiveData<List<Task>> mAllTasks;
     private LiveData<List<Task>> allToDoTasks;
     private LiveData<List<Task>> allDoneTasks;
+    private LiveData<List<Task>> rdvList;
     static String TAG= "Repository";
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
@@ -28,7 +29,8 @@ public class Repository {
         mAllTasks = mTaskDAO.getOrderedTasks();
         allToDoTasks = mTaskDAO.getToDoTasks();
         allDoneTasks = mTaskDAO.getDoneTasks();
-        //Log.d(TAG, "Repository: todotasks size: "+allToDoTasks.getValue().size());
+        rdvList = mTaskDAO.getRdvList();
+
     }
 
     // Room executes all queries on a separate thread.
@@ -58,5 +60,9 @@ public class Repository {
             mTaskDAO.insertAll(tasks);
 
         });
+    }
+
+    public LiveData<List<Task>> getRdvList() {
+        return rdvList;
     }
 }

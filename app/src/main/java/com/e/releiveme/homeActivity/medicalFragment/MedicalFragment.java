@@ -9,14 +9,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.releiveme.data.Models.Task;
+import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksViewModel;
 import com.e.releiveme.homeActivity.toDoFragment.Adapter;
 import com.e.releiveme.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MedicalFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
     private Button button, retour;
@@ -24,7 +29,8 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
     private RecyclerView medicalrecyclerView;
     private View view;
     public Adapter adapter;
-    private ArrayList<String> toDoList;
+    private List<String> rdvList;
+    DoneTasksViewModel taskViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,13 +70,29 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        taskViewModel = new DoneTasksViewModel(getActivity().getApplication());
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_medical, container, false);
+        initViews(view);
 
+        initObservers(view);
+
+        return view;
+    }
+    private void initViews(View view) {
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.medical_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         button = (Button) view.findViewById(R.id.buttonMedical);
         button.setOnClickListener(this);
         retour = (Button) view.findViewById(R.id.returnMedical);
@@ -80,24 +102,24 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         medicalrecyclerView = (RecyclerView) view.findViewById(R.id.medical_recycler_view);
         medicalrecyclerView.setVisibility(View.GONE);
 
-        toDoList = new ArrayList<>();
-        toDoList.add("rdv1");
-        toDoList.add("rdv2");
-        toDoList.add("rdv3");
-        toDoList.add("rdv4");
-        toDoList.add("rdv5");
+    }
+    private void initObservers(View view) {
 
-        // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.medical_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new Adapter(getContext(), toDoList);
+        taskViewModel.rdvList.observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                List<String> description = tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
+                populateData(description);
+            }
+        });
+    }
+    private void populateData(List<String> data){
+        adapter = new Adapter(getContext(), data);
         adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        medicalrecyclerView.setAdapter(adapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(medicalrecyclerView.getContext(), 1);
+        medicalrecyclerView.addItemDecoration(dividerItemDecoration);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),1);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
-        return view;
     }
 
     @Override
