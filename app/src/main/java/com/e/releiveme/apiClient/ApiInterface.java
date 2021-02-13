@@ -18,7 +18,7 @@ public interface ApiInterface {
     Call<ServerResponse> post(
             @Field("method") String method,
             @Field("username") String username,
-            @Field("password") String taskId
+            @Field("taskId") String taskId
     );
 
     //This method is used for "GET"

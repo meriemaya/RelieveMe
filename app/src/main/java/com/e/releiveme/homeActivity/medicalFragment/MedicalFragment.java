@@ -18,19 +18,20 @@ import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksViewModel;
 import com.e.releiveme.homeActivity.toDoFragment.Adapter;
 import com.e.releiveme.R;
+import com.e.releiveme.utils.AlertDialogClass;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MedicalFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener {
+public class MedicalFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener, AlertDialogClass.DialogListener  {
     private Button button, retour;
     private TextView medical;
     private RecyclerView medicalrecyclerView;
     private View view;
     public Adapter adapter;
-    private List<String> rdvList;
     DoneTasksViewModel taskViewModel;
+    AlertDialogClass alert;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -135,11 +136,22 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
             medical.setVisibility(View.VISIBLE);
             retour.setVisibility(View.GONE);
             medicalrecyclerView.setVisibility(View.GONE);
+        }else if(v.getId()==R.id.dialog_ok){
+            //taskViewModel.updateTaskDone();
+            alert.dismiss();
+            Toast.makeText(getContext(), "Tâche " +taskViewModel.getAllRDV().getValue().get(taskViewModel.selectedTask).getTaskDescription()+" Supprimée" , Toast.LENGTH_SHORT).show();
+
+        }else if(v.getId()==R.id.dialog_cancel){
+            alert.dismiss();
         }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        taskViewModel.selectedTask = position;
+        alert = new AlertDialogClass(this);
+        Task positionTask=taskViewModel.getAllRDV().getValue().get(position);
+        alert.setButtonsText("Supprimer","Retour",positionTask.getTaskDescription());
+        alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
     }
 }

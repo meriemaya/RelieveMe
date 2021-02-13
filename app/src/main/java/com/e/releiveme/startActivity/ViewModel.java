@@ -54,7 +54,7 @@ public class ViewModel implements Callback<ServerResponse> {
             ServerResponse res = response.body();
             sharedPreferences.edit().putString(StartActivity.USER_NAME,res.getUsername()).commit();
             sharedPreferences.edit().putString(StartActivity.USER_BIRTH_DATE,res.getBirthDate()).commit();
-           List<Task> tasks = new ArrayList(res.getTasks());
+            List<Task> tasks = new ArrayList(res.getTasks());
             repository.insertAllTasks(tasks);
             loaded.setValue(true);
        }else {

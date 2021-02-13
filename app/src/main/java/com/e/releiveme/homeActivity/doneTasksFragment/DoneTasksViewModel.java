@@ -29,17 +29,21 @@ public class DoneTasksViewModel {
     public DoneTasksViewModel(Context context) {
         mRepository = new Repository(context);
         mAllDoneTasks = mRepository.getAllDoneTasks();
-        service= new UserService();
         rdvList = mRepository.getRdvList();
+        service= new UserService();
 
 
 
     }
-    LiveData<List<Task>> getAllDoneTasks() { return mAllDoneTasks; }
+    public LiveData<List<Task>> getAllDoneTasks() { return mAllDoneTasks; }
+    public LiveData<List<Task>> getAllRDV() { return rdvList; }
+
     LiveData<List<String>> getTasksLiveData() {
         LiveData<List<Task>> tasksLiveData = mRepository.getAllDoneTasks();
         return Transformations.map(tasksLiveData, userList -> {
             return userList.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
         });
     }
+
+
 }

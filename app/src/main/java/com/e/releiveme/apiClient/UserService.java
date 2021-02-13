@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.data.Models.User;
+import com.e.releiveme.startActivity.ViewModel;
 import com.squareup.otto.Produce;
 
 import okhttp3.OkHttpClient;
@@ -28,8 +29,11 @@ public class UserService {
         Call<ServerResponse> call = api.getUser("user_tasks", username, password);
         call.enqueue(callback);
     }
-    public void updateTask(String username, String password , String taskId) {
-        Call<ServerResponse> call = api.post("update_task", username, password);
+    public void updateTask(String username,String password, String taskId,Callback<ServerResponse> callback) {
+        Call<ServerResponse> call = api.post("update_task", username, taskId);
+        call.enqueue(callback);
+
+
 
     }
     public void duplicateTask(String username, String password ,String taskId) {

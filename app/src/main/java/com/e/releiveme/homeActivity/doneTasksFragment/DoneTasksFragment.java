@@ -31,6 +31,7 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
     public Adapter adapter;
     RecyclerView recyclerView;
     DoneTasksViewModel taskViewModel;
+    AlertDialogClass alert;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -141,12 +142,21 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
             fait.setVisibility(View.VISIBLE);
             retour.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
+        }else if(v.getId()==R.id.dialog_ok){
+            //taskViewModel.updateTaskDone();
+            alert.dismiss();
+            Toast.makeText(getContext(), "Tâche " +taskViewModel.getAllDoneTasks().getValue().get(taskViewModel.selectedTask).getTaskDescription()+" Supprimée" , Toast.LENGTH_SHORT).show();
+
+        }else if(v.getId()==R.id.dialog_cancel){
+            alert.dismiss();
         }
     }
 
     @Override
     public void onItemClick(View view, int position) {
         taskViewModel.selectedTask = position;
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        alert= new AlertDialogClass(this);
+        alert.setButtonsText("Supprimer","Retour",taskViewModel.getAllDoneTasks().getValue().get(position).getTaskDescription());
+        alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
     }
 }

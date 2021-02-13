@@ -68,7 +68,8 @@ public class StartActivity extends FragmentActivity{
         if(userName !=null){
            onUserReady();
         }else{
-            userName = UUID.randomUUID().toString();
+            //userName = UUID.randomUUID().toString();
+            userName="99b5e75a-f807-4be4-bebb-da2ed7d24bef";
             sharedPreferences.edit().putString(USER_KEY, userName).commit();
 
             try{
