@@ -1,9 +1,11 @@
 package com.e.releiveme.homeActivity.toDoFragment;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,13 +16,17 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private List<String> mData;
+    private List<String> mTypes;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
-    public Adapter(Context context, List<String> data) {
+    public Adapter(Context context, List<String> data, List<String> types) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mTypes =types;
+        this.context =context;
     }
 
     // inflates the row layout from xml when needed
@@ -33,8 +39,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String title = mData.get(position);
+        holder.myTextView.setText(title);
+        String drawName=mTypes.get(position);
+        int drawId=context.getResources().getIdentifier("drawable/"+drawName, null, context.getPackageName());
+        holder.imageTaskType.setImageResource(drawId);
     }
 
     // total number of rows
@@ -47,10 +56,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
+        ImageView imageTaskType;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.fragment_a_faire_tache);
+            imageTaskType =itemView.findViewById(R.id.icon_task_type);
             itemView.setOnClickListener(this);
         }
 

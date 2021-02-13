@@ -106,7 +106,8 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
             @Override
             public void onChanged(List<Task> tasks) {
                 List<String> description = tasks.stream().map(task -> task.getTaskDescription()).collect(Collectors.toList());
-                populateData(description);
+                List<String> types = tasks.stream().map(task -> task.getTypeTask()).collect(Collectors.toList());
+                populateData(description,types);
             }
         });
     }
@@ -114,8 +115,8 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
     /**
      * @param data
      */
-    private void populateData(List<String> data) {
-        adapter = new Adapter(getContext(), data);
+    private void populateData(List<String> data,List<String> types) {
+        adapter = new Adapter(getContext(), data,types);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), 1);

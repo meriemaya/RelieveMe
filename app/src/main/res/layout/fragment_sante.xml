@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homeActivity.AFaire">
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -16,12 +16,12 @@
 
         <Button
             android:id="@+id/buttonSante"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:background="@drawable/sante"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#E91E63"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:text="Santé"
-            android:textColor="#FFFFFF" />
+            android:textColor="#E91E63"
+             android:textStyle="bold"
+            android:textSize="@dimen/text_l"
+            />
 
         <TextView
             android:id="@+id/heartbeat"

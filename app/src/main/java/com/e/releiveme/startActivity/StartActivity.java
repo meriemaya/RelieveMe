@@ -65,7 +65,7 @@ public class StartActivity extends FragmentActivity{
     protected void generateQrCode(ImageView v){
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         userName =sharedPreferences.getString(USER_NAME,null);
-        if(userName !=null){
+        if(userName != null){
            onUserReady();
         }else{
             //userName = UUID.randomUUID().toString();

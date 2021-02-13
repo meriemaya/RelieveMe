@@ -12,4 +12,6 @@
     <string name="dialog_message">La tâche est effectuée</string>
     <string name="confirmer">Confirmer</string>
     <string name="cancel">Pas encore</string>
+    <string name="fait">Tâches finies</string>
+    <string name="afaire">Tâches à faire</string>
 </resources>
