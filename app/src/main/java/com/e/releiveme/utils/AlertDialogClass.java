@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,7 +21,9 @@ public class AlertDialogClass extends DialogFragment {
     Button conf;
     Button cancel;
     TextView title;
-    String okText, cancelText,titleText =null;
+    TextView details;
+    ImageView icon;
+    String okText, cancelText,titleText,detailsText,iconType =null;
 
 
 
@@ -38,13 +41,21 @@ public class AlertDialogClass extends DialogFragment {
         title=v.findViewById(R.id.dialog_title);
         cancel = (Button) v.findViewById(R.id.dialog_cancel);
         conf =v.findViewById(R.id.dialog_ok);
+        details=v.findViewById(R.id.details_text);
+        icon=v.findViewById(R.id.icon_task);
         cancel.setOnClickListener(dialogListener);
         conf.setOnClickListener(dialogListener);
+
         if(okText != null) {
             conf.setText(okText);
             cancel.setText(cancelText);
             title.setText(titleText);
         }
+
+        if(detailsText != null) details.setText(this.detailsText);
+        if(iconType != null) icon.setImageResource(getContext().getResources().getIdentifier("drawable/"+iconType, null, getContext().getPackageName()));
+
+
         return v;
     }
     public void setButtonsText(String okText, String cancelText, String title){
@@ -52,6 +63,14 @@ public class AlertDialogClass extends DialogFragment {
         this.okText=okText;
         this.titleText=title;
     }
+    public void setDetailsText(String details){
+        this.detailsText=details;
+    }
+    public void setIconType(String type){
+        this.iconType=type;
+
+    }
+
 
 
 

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.releiveme.R;
+import com.e.releiveme.data.DateConverter;
 import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.utils.AlertDialogClass;
 
@@ -159,7 +160,14 @@ public class ToDoTaskFragment extends Fragment implements View.OnClickListener, 
     public void onItemClick(View view, int position) {
         taskViewModel.selectedTask = position;
         alert= new AlertDialogClass(this);
+        Task selectedTask=taskViewModel.mAllToDoTasks.getValue().get(position);
+        String details= DateConverter.dateToString(selectedTask.getTaskDate());
+
+        alert.setIconType(selectedTask.getTypeTask());
+        alert.setDetailsText(selectedTask.getTaskDescription()+"\n"+details);
         alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
+
+
 
     }
 

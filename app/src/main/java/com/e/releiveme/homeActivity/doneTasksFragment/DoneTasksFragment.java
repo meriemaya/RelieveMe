@@ -16,12 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.releiveme.R;
+import com.e.releiveme.data.DateConverter;
 import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.homeActivity.toDoFragment.Adapter;
 import com.e.releiveme.homeActivity.toDoFragment.TodoTaskViewModel;
 import com.e.releiveme.utils.AlertDialogClass;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class DoneTasksFragment extends Fragment implements View.OnClickListener, Adapter.ItemClickListener, AlertDialogClass.DialogListener {
@@ -157,7 +161,12 @@ public class DoneTasksFragment extends Fragment implements View.OnClickListener,
     public void onItemClick(View view, int position) {
         taskViewModel.selectedTask = position;
         alert= new AlertDialogClass(this);
-        alert.setButtonsText("Supprimer","Retour",taskViewModel.getAllDoneTasks().getValue().get(position).getTaskDescription());
+        Task selectedTask=taskViewModel.getAllDoneTasks().getValue().get(position);
+        String details=DateConverter.dateToString(selectedTask.getTaskDate());
+
+        alert.setButtonsText("Supprimer","Retour",selectedTask.getTaskDescription());
+        alert.setDetailsText(details);
+        alert.setIconType(selectedTask.getTypeTask());
         alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
     }
 }

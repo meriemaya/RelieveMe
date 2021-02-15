@@ -9,11 +9,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dialog_message"
-        android:layout_marginTop="@dimen/margin_xl"
-
+        android:layout_marginTop="@dimen/margin_ll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+
+        />
+    <ImageView
+        android:id="@+id/icon_task"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        android:layout_marginHorizontal="@dimen/margin_m"
+        android:layout_marginTop="@dimen/margin_m"
+        />
+    <TextView
+        android:id="@+id/details_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        app:layout_constraintStart_toEndOf="@+id/icon_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_m"
         />
     <Button
         android:id="@+id/dialog_cancel"
@@ -21,7 +41,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel"
         android:textSize="@dimen/text_m"
-android:background="@drawable/rounded_negative"
+        android:background="@drawable/rounded_negative"
         android:layout_marginBottom="@dimen/margin_xl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dialog_ok"

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.releiveme.data.DateConverter;
 import com.e.releiveme.data.Models.Task;
 import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksViewModel;
 import com.e.releiveme.homeActivity.toDoFragment.Adapter;
@@ -151,8 +152,16 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
     public void onItemClick(View view, int position) {
         taskViewModel.selectedTask = position;
         alert = new AlertDialogClass(this);
-        Task positionTask=taskViewModel.getAllRDV().getValue().get(position);
-        alert.setButtonsText("Supprimer","Retour",positionTask.getTaskDescription());
+        Task selectedTask=taskViewModel.getAllRDV().getValue().get(position);
+        String details= DateConverter.dateToString(selectedTask.getTaskDate());
+
+        alert.setButtonsText("Supprimer","Retour",selectedTask.getTaskDescription());
+        alert.setDetailsText(details);
+        alert.setIconType(selectedTask.getTypeTask());
         alert.show(getChildFragmentManager(), AlertDialogClass.TAG);
+
+
+
+
     }
 }
