@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:background="@drawable/sante"
-            android:backgroundTint="#E91E63"
+            android:backgroundTint="#FB7AA6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,10 +33,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:text="Santé"
-            android:textColor="#E91E63"
-             android:textStyle="bold"
+            android:textColor="#FB7AA6"
             android:textSize="@dimen/text_l"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/heartbeat"

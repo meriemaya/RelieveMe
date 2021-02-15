@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:background="@drawable/fait"
-            android:backgroundTint="#248807"
+            android:backgroundTint="#5AD138"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/screen_percentage_05"
             android:text="@string/fait"
-            android:textColor="#248807"
+            android:textColor="#5AD138"
             android:textStyle="bold"
             android:textSize="@dimen/text_l"/>
 
