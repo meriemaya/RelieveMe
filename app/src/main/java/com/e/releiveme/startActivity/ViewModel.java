@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.e.releiveme.alarm.Alarm;
 import com.e.releiveme.apiClient.ServerResponse;
 import com.e.releiveme.apiClient.UserService;
 import com.e.releiveme.data.Models.Task;
@@ -31,13 +31,16 @@ public class ViewModel implements Callback<ServerResponse> {
     MutableLiveData<Boolean> loaded = new MutableLiveData();
     SharedPreferences sharedPreferences ;
     Repository repository;
+    Context context;
     private final static String TAG = "StartActivity";
 
    public  ViewModel(Context context){
        sharedPreferences =context.getSharedPreferences(StartActivity.SHARED_NAME,0);
         STATE=1;
+        this.context=context;
        service = new UserService();
        repository= new Repository(context);
+
     }
 
 
@@ -56,6 +59,13 @@ public class ViewModel implements Callback<ServerResponse> {
             sharedPreferences.edit().putString(StartActivity.USER_BIRTH_DATE,res.getBirthDate()).commit();
             List<Task> tasks = new ArrayList(res.getTasks());
             repository.insertAllTasks(tasks);
+           Alarm alarm=new Alarm(context);
+           for (Task task:tasks) {
+               if (! task.getTaskState().equals("1")) alarm.startAlert(task);
+           }
+
+
+
             loaded.setValue(true);
        }else {
            loaded.setValue(false);
