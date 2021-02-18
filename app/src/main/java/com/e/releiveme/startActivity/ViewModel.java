@@ -59,9 +59,13 @@ public class ViewModel implements Callback<ServerResponse> {
             sharedPreferences.edit().putString(StartActivity.USER_BIRTH_DATE,res.getBirthDate()).commit();
             List<Task> tasks = new ArrayList(res.getTasks());
             repository.insertAllTasks(tasks);
-           Alarm alarm=new Alarm(context);
+            Alarm alarm;
            for (Task task:tasks) {
-               if (! task.getTaskState().equals("1")) alarm.startAlert(task);
+               if (! task.getTaskState().equals("1")) {
+                   alarm = new Alarm(context);
+                   alarm.startAlert(task);
+               }
+
            }
 
 

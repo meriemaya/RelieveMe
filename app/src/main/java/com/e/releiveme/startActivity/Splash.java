@@ -10,7 +10,7 @@ import com.e.releiveme.homeActivity.HomeActivity;
 
 public class Splash extends WearableActivity {
     /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 2500;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
 
     /** Called when the activity is first created. */
     @Override

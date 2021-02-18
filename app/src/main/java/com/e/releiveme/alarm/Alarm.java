@@ -34,7 +34,7 @@ public class Alarm {
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+triggerMillis, pendingIntent);
 
-        Toast.makeText(context, " Alarm set in "+triggerMillis, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, " Alarm", Toast.LENGTH_LONG).show();
     }
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

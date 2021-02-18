@@ -1,4 +1,4 @@
-package com.e.releiveme.homeActivity.HealthFragment;
+package com.e.releiveme.homeActivity.healthFragment;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -71,13 +71,19 @@ public class Sante extends Fragment implements View.OnClickListener, SensorEvent
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
 
+        if (mHeartRateSensor != null) {
+            mSensorManager.registerListener( this, mHeartRateSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+
         return view;
     }
 
     @Override
     public void onClick(View v) {
         if(v == button) {
-
+           // heartbeat.setText(String.valueOf(mHeartRateSensor.getPower()));
         }
     }
 

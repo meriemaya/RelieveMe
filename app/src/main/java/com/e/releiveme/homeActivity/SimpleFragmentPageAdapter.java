@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.e.releiveme.homeActivity.HealthFragment.Sante;
+import com.e.releiveme.homeActivity.healthFragment.Sante;
 import com.e.releiveme.homeActivity.doneTasksFragment.DoneTasksFragment;
 import com.e.releiveme.homeActivity.medicalFragment.MedicalFragment;
 import com.e.releiveme.homeActivity.toDoFragment.ToDoTaskFragment;
