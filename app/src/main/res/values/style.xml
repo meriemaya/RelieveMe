@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button.positive" parent="Widget.AppCompat.Button">
+        <item name="android:background">#095A09</item>
+    </style>
+    <style name="button.negative" parent="TextAppearance.AppCompat">
+        <item name="android:background">#F44336</item>
+    </style>
+</resources>

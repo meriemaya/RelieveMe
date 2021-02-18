@@ -19,9 +19,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    def room_version = "2.2.6"
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.google.android.support:wearable:2.5.0'
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
@@ -30,5 +35,23 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     implementation 'androidx.wear:wear:1.0.0'
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup:otto:1.3.8'
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    implementation "org.mindrot:jbcrypt:0.4"
+    implementation 'androidx.core:core:1.2.0'
+
 }
