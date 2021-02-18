@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonMedical"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/screen_percentage_05"
+            android:background="@drawable/medecin"
+            android:backgroundTint="#5FD7FF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/medical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/screen_percentage_05"
+            android:text="Rendez-vous"
+            android:textColor="#5FD7FF"
+            android:textSize="@dimen/text_l"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/returnMedical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:layout_gravity="center"
+                android:text="Retour"
+                android:textSize="8sp" />
+
+            <androidx.wear.widget.WearableRecyclerView
+                android:id="@+id/medical_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </androidx.wear.widget.WearableRecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
